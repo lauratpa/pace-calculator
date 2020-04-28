@@ -1,22 +1,39 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import useInput from "./useInput.jsx";
 
 const App = () => {
-  const [distance, setDistance] = useState("");
-  const [paceHours, setPaceHours] = useState("");
-  const [paceMinutes, setPaceMinutes] = useState("");
-  const [paceSeconds, setPaceSeconds] = useState("");
+  const [distance, DistanceInput, setDistance] = useInput(
+    "Distance",
+    "",
+    targetVariable === "distance"
+  );
+  const [paceHours, PaceHoursInput, setPaceHours] = useInput(
+    "Hours",
+    "",
+    targetVariable === "pace"
+  );
+  const [paceMinutes, PaceMinutesInput, setPaceMinutes] = useInput(
+    "Minutes",
+    "",
+    targetVariable === "pace"
+  );
+  const [paceSeconds, PaceSecondsInput, setPaceSeconds] = useInput(
+    "Seconds",
+    "",
+    targetVariable === "pace"
+  );
   const [time, setTime] = useState("");
   const [targetVariable, setTargetVariable] = useState("time");
 
   useEffect(() => {
     const pace = paceHours * 60 + paceMinutes + paceSeconds / 60;
 
-    if (targetVariable === "time" && distance && pace) {
+    if (targetVariable === "time" && distance > 0 && pace > 0) {
       setTime((distance / 1000) * pace);
-    } else if (targetVariable === "distance" && time && pace) {
+    } else if (targetVariable === "distance" && time > 0 && pace > 0) {
       setDistance((time / pace) * 1000);
-    } else if (targetVariable === "pace" && time && distance) {
+    } else if (targetVariable === "pace" && time > 0 && distance > 0) {
       const resultPace = time / (distance / 1000);
       const hours = Math.floor(resultPace / 60);
       const minutes = Math.floor(resultPace - hours * 60);
@@ -40,48 +57,10 @@ const App = () => {
           <option>Pace</option>
         </select>
       </label>
-      <label>
-        Distance:
-        <input
-          type="text"
-          value={distance}
-          disabled={targetVariable === "distance"}
-          onChange={(e) => {
-            setDistance(+e.target.value);
-          }}
-        />
-        m
-      </label>
-      <label>
-        Pace: Hours
-        <input
-          type="text"
-          value={paceHours}
-          disabled={targetVariable === "pace"}
-          onChange={(e) => {
-            setPaceHours(+e.target.value);
-          }}
-        />
-        Minutes
-        <input
-          type="text"
-          value={paceMinutes}
-          disabled={targetVariable === "pace"}
-          onChange={(e) => {
-            setPaceMinutes(+e.target.value);
-          }}
-        />
-        Seconds
-        <input
-          type="text"
-          value={paceSeconds}
-          disabled={targetVariable === "pace"}
-          onChange={(e) => {
-            setPaceSeconds(+e.target.value);
-          }}
-        />
-        min/km
-      </label>
+      <DistanceInput />
+      <PaceHoursInput />
+      <PaceMinutesInput />
+      <PaceSecondsInput />
       <label>
         Time:
         <input
@@ -92,7 +71,6 @@ const App = () => {
             setTime(+e.target.value);
           }}
         />
-        min
       </label>
     </div>
   );
