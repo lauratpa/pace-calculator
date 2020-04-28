@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const useInput = (label, defaultState, disabled) => {
   const [state, updateState] = useState(defaultState);
 
-  const Input = () => {
+  function Input() {
     return (
       <label>
         {label}:
@@ -17,7 +17,7 @@ const useInput = (label, defaultState, disabled) => {
         />
       </label>
     );
-  };
+  }
 
   return [state, Input, updateState];
 };
