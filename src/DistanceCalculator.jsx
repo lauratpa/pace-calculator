@@ -1,28 +1,71 @@
-import React, { useEffect } from "react";
-import useInput from "./useInput.jsx";
+import React, { useEffect, useState } from "react";
+import UseInput from "./useInput.jsx";
 
-const DistanceCalculator = () => {
-  const [, DistanceInput, setDistance] = useInput("Distance", "", true);
-  const [paceHours, PaceHoursInput] = useInput("Hours", "", false);
-  const [paceMinutes, PaceMinutesInput] = useInput("Minutes", "", false);
-  const [paceSeconds, PaceSecondsInput] = useInput("Seconds", "", false);
-  const [duration, DurationInput] = useInput("Duration", "", false);
+const DistanceCalculator = ({ fields, setFields }) => {
+  const [distance, setDistance] = useState("here");
+
+  const DistanceInput = (
+    <UseInput
+      label="Distance"
+      field="distance"
+      value={distance}
+      updateValues={() => {}}
+      disabled={true}
+    />
+  );
+  const DurationInput = (
+    <UseInput
+      label="Duration"
+      field="duration"
+      value={fields.duration}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const PaceHoursInput = (
+    <UseInput
+      label="Hours"
+      field="paceHours"
+      value={fields.paceHours}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const PaceMinutesInput = (
+    <UseInput
+      label="Minutes"
+      field="paceMinutes"
+      value={fields.paceMinutes}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const PaceSecondsInput = (
+    <UseInput
+      label="Seconds"
+      field="paceSeconds"
+      value={fields.paceSeconds}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
 
   useEffect(() => {
-    const pace = paceHours * 60 + paceMinutes + paceSeconds / 60;
+    const pace =
+      fields.paceHours * 60 + fields.paceMinutes + fields.paceSeconds / 60;
 
-    if (duration > 0 && pace > 0) {
-      setDistance((duration / pace) * 1000);
+    if (fields.duration > 0 && pace > 0) {
+      setDistance((fields.duration / pace) * 1000);
     }
-  }, [duration, paceHours, paceMinutes, paceSeconds, setDistance]);
+  }, [fields, setFields]);
 
   return (
-    <div id="distance-calculator">
-      <DistanceInput />
-      <PaceHoursInput />
-      <PaceMinutesInput />
-      <PaceSecondsInput />
-      <DurationInput />
+    <div>
+      {DistanceInput}
+      {DurationInput}
+      {PaceHoursInput}
+      {PaceMinutesInput}
+      {PaceSecondsInput}
     </div>
   );
 };

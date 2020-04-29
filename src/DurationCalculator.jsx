@@ -1,28 +1,73 @@
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
-import useInput from "./useInput.jsx";
+import React, { useEffect, useState } from "react";
+import UseInput from "./useInput.jsx";
 
-const App = () => {
-  const [distance, DistanceInput] = useInput("Distance", "", false);
-  const [paceHours, PaceHoursInput] = useInput("Hours", "", false);
-  const [paceMinutes, PaceMinutesInput] = useInput("Minutes", "", false);
-  const [paceSeconds, PaceSecondsInput] = useInput("Seconds", "", false);
-  const [, DurationInput, setDuration] = useInput("Duration", "", false);
+const DistanceCalculator = ({ fields, setFields }) => {
+  const [duration, setDuration] = useState("here");
+
+  const DistanceInput = (
+    <UseInput
+      label="Distance"
+      field="distance"
+      value={fields.distance}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const DurationInput = (
+    <UseInput
+      label="Duration"
+      field="duration"
+      value={duration}
+      updateValues={() => {}}
+      disabled={true}
+    />
+  );
+  const PaceHoursInput = (
+    <UseInput
+      label="Hours"
+      field="paceHours"
+      value={fields.paceHours}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const PaceMinutesInput = (
+    <UseInput
+      label="Minutes"
+      field="paceMinutes"
+      value={fields.paceMinutes}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
+  const PaceSecondsInput = (
+    <UseInput
+      label="Seconds"
+      field="paceSeconds"
+      value={fields.paceSeconds}
+      updateValues={setFields}
+      disabled={false}
+    />
+  );
 
   useEffect(() => {
-    const pace = paceHours * 60 + paceMinutes + paceSeconds / 60;
-    setDuration((distance / 1000) * pace);
-  }, []);
+    const pace =
+      fields.paceHours * 60 + fields.paceMinutes + fields.paceSeconds / 60;
+
+    if (fields.distance > 0 && pace > 0) {
+      setDuration((fields.distance / 1000) * pace);
+    }
+  }, [fields, setFields]);
 
   return (
     <div>
-      <DistanceInput />
-      <PaceHoursInput />
-      <PaceMinutesInput />
-      <PaceSecondsInput />
-      <DurationInput />
+      {DistanceInput}
+      {DurationInput}
+      {PaceHoursInput}
+      {PaceMinutesInput}
+      {PaceSecondsInput}
     </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default DistanceCalculator;

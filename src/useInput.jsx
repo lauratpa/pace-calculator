@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
-const useInput = (label, defaultState, disabled) => {
-  const [state, updateState] = useState(defaultState);
-
-  function Input() {
-    return (
-      <label>
-        {label}:
-        <input
-          type="text"
-          value={state}
-          disabled={disabled}
-          onChange={(e) => {
-            updateState(+e.target.value);
-          }}
-        />
-      </label>
-    );
-  }
-
-  return [state, Input, updateState];
+const useInput = ({ label, field, value, updateValues, disabled }) => {
+  return (
+    <label>
+      {label}:
+      <input
+        type="text"
+        value={value}
+        disabled={disabled}
+        onChange={(e) => {
+          updateValues(field, +e.target.value);
+        }}
+      />
+    </label>
+  );
 };
 
 export default useInput;
