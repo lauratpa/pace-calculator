@@ -1,54 +1,10 @@
 import React, { useEffect, useState } from "react";
-import UseInput from "./useInput.jsx";
+import DistanceInput from "./DistanceInput.jsx";
+import DurationInput from "./DurationInput.jsx";
+import PaceInput from "./PaceInput.jsx";
 
 const DistanceCalculator = ({ fields, setFields }) => {
   const [distance, setDistance] = useState("here");
-
-  const DistanceInput = (
-    <UseInput
-      label="Distance"
-      field="distance"
-      value={distance}
-      updateValues={() => {}}
-      disabled={true}
-    />
-  );
-  const DurationInput = (
-    <UseInput
-      label="Duration"
-      field="duration"
-      value={fields.duration}
-      updateValues={setFields}
-      disabled={false}
-    />
-  );
-  const PaceHoursInput = (
-    <UseInput
-      label="Hours"
-      field="paceHours"
-      value={fields.paceHours}
-      updateValues={setFields}
-      disabled={false}
-    />
-  );
-  const PaceMinutesInput = (
-    <UseInput
-      label="Minutes"
-      field="paceMinutes"
-      value={fields.paceMinutes}
-      updateValues={setFields}
-      disabled={false}
-    />
-  );
-  const PaceSecondsInput = (
-    <UseInput
-      label="Seconds"
-      field="paceSeconds"
-      value={fields.paceSeconds}
-      updateValues={setFields}
-      disabled={false}
-    />
-  );
 
   useEffect(() => {
     const pace =
@@ -61,11 +17,21 @@ const DistanceCalculator = ({ fields, setFields }) => {
 
   return (
     <div>
-      {DistanceInput}
-      {DurationInput}
-      {PaceHoursInput}
-      {PaceMinutesInput}
-      {PaceSecondsInput}
+      <DistanceInput
+        value={distance}
+        updateValues={setFields}
+        disabled={true}
+      />
+      <DurationInput
+        value={fields.duration}
+        updateValues={setFields}
+        disabled={false}
+      />
+      <PaceInput
+        value={fields.paceMinutes}
+        updateValues={setFields}
+        disabled={false}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const useInput = ({ label, field, value, updateValues, disabled }) => {
+const useInput = ({ label, value, onChange, disabled }) => {
   return (
     <label>
       {label}:
@@ -9,7 +9,7 @@ const useInput = ({ label, field, value, updateValues, disabled }) => {
         value={value}
         disabled={disabled}
         onChange={(e) => {
-          updateValues(field, +e.target.value);
+          onChange(e);
         }}
       />
     </label>
