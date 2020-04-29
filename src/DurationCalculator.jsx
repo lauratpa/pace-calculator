@@ -19,17 +19,13 @@ const DistanceCalculator = ({ fields, setFields }) => {
     <div>
       <DistanceInput
         value={fields.distance}
-        updateValues={setFields}
+        setValues={setFields}
         disabled={false}
       />
-      <DurationInput
-        value={duration}
-        updateValues={setFields}
-        disabled={true}
-      />
+      <DurationInput value={duration} setValues={setFields} disabled={true} />
       <PaceInput
         value={fields.paceMinutes}
-        updateValues={setFields}
+        setValues={setFields}
         disabled={false}
       />
     </div>

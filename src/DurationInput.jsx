@@ -1,7 +1,7 @@
 import React from "react";
 import UseInput from "./useInput.jsx";
 
-const DurationInput = (value, setValues, disabled) => {
+const DurationInput = ({ value, setValues, disabled }) => {
   const onChange = (e) => {
     setValues("duration", +e.target.value);
   };
