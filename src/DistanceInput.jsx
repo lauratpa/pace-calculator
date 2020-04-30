@@ -1,21 +1,22 @@
 import React from "react";
-import UseInput from "./useInput.jsx";
+import NumberInput from "./NumberInput.jsx";
 
-const DistanceInput = ({ value, setValues, disabled }) => {
+const DistanceNumberInput = ({ value, setValues, disabled }) => {
   const onChange = (e) => {
     setValues("distance", +e.target.value);
   };
 
   return (
     <div>
-      <UseInput
+      <NumberInput
         label="Distance"
         value={value}
         onChange={onChange}
         disabled={disabled}
       />
+      meters
     </div>
   );
 };
 
-export default DistanceInput;
+export default DistanceNumberInput;

@@ -4,11 +4,16 @@ import DurationInput from "./DurationInput.jsx";
 import PaceInput from "./PaceInput.jsx";
 
 const PaceCalculator = ({ fields, setFields }) => {
-  const [pace, setPace] = useState("");
+  const [pace, setPace] = useState("0");
 
   useEffect(() => {
-    if (fields.duration > 0 && fields.distance > 0) {
-      setPace(fields.duration / (fields.distance / 1000));
+    const duration =
+      fields.durationHours * 60 +
+      fields.durationMinutes +
+      fields.durationSeconds / 60;
+
+    if (duration > 0 && fields.distance > 0) {
+      setPace(duration / (fields.distance / 1000));
     }
   }, [fields, setFields]);
 
@@ -20,7 +25,7 @@ const PaceCalculator = ({ fields, setFields }) => {
         disabled={false}
       />
       <DurationInput
-        value={fields.duration}
+        value={fields.durationMinutes}
         setValues={setFields}
         disabled={false}
       />

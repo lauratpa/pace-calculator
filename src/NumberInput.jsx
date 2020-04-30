@@ -1,6 +1,6 @@
 import React from "react";
 
-const useInput = ({ label, value, onChange, disabled }) => {
+const NumberInput = ({ label, value, onChange, disabled }) => {
   return (
     <label>
       {label}:
@@ -16,4 +16,4 @@ const useInput = ({ label, value, onChange, disabled }) => {
   );
 };
 
-export default useInput;
+export default NumberInput;

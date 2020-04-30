@@ -1,7 +1,7 @@
 import React from "react";
-import UseInput from "./useInput.jsx";
+import NumberInput from "./NumberInput.jsx";
 
-const PaceInput = ({ value, setValues, disabled }) => {
+const PaceNumberInput = ({ value, setValues, disabled }) => {
   const onHoursChange = (e) => {
     setValues("paceHours", +e.target.value);
   };
@@ -18,19 +18,20 @@ const PaceInput = ({ value, setValues, disabled }) => {
 
   return (
     <div>
-      <UseInput
+      Pace:
+      <NumberInput
         label="Hours"
         value={hours}
         onChange={onHoursChange}
         disabled={disabled}
       />
-      <UseInput
+      <NumberInput
         label="Minutes"
         value={minutes}
         onChange={onMinutesChange}
         disabled={disabled}
       />
-      <UseInput
+      <NumberInput
         label="Seconds"
         value={seconds}
         onChange={onSecondsChange}
@@ -40,4 +41,4 @@ const PaceInput = ({ value, setValues, disabled }) => {
   );
 };
 
-export default PaceInput;
+export default PaceNumberInput;

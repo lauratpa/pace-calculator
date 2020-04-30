@@ -3,8 +3,12 @@ import DistanceInput from "./DistanceInput.jsx";
 import DurationInput from "./DurationInput.jsx";
 import PaceInput from "./PaceInput.jsx";
 
-const DistanceCalculator = ({ fields, setFields }) => {
-  const [duration, setDuration] = useState("here");
+const DurationCalculator = ({ fields, setFields }) => {
+  const [duration, setDuration] = useState("0");
+
+  const hours = Math.floor(duration / 60);
+  const minutes = Math.floor(duration - hours * 60);
+  const seconds = (duration - hours * 60 - minutes) * 60;
 
   useEffect(() => {
     const pace =
@@ -32,4 +36,4 @@ const DistanceCalculator = ({ fields, setFields }) => {
   );
 };
 
-export default DistanceCalculator;
+export default DurationCalculator;

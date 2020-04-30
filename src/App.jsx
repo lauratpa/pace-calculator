@@ -7,11 +7,13 @@ import useFormFields from "./useFormFields.jsx";
 
 const App = () => {
   const [fields, setFields] = useFormFields({
-    duration: "",
-    distance: "",
-    paceHours: "",
-    paceMinutes: "",
-    paceSeconds: "",
+    distance: "0",
+    durationHours: "0",
+    durationMinutes: "0",
+    durationSeconds: "0",
+    paceHours: "0",
+    paceMinutes: "0",
+    paceSeconds: "0",
   });
 
   const [targetVariable, setTargetVariable] = useState("distance");
