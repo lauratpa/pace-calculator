@@ -3,13 +3,16 @@ import NumberInput from "./NumberInput.jsx";
 
 const DurationNumberInput = ({ value, setValues, disabled }) => {
   const onHoursChange = (e) => {
-    setValues("durationHours", +e.target.value);
+    const duration = +e.target.value * 60 + minutes + seconds;
+    setValues("duration", duration);
   };
   const onMinutesChange = (e) => {
-    setValues("durationMinutes", +e.target.value);
+    const duration = hours + +e.target.value + seconds;
+    setValues("duration", duration);
   };
   const onSecondsChange = (e) => {
-    setValues("durationSeconds", +e.target.value);
+    const duration = hours + minutes + +e.target.value / 60;
+    setValues("duration", duration);
   };
 
   const hours = Math.floor(value / 60);

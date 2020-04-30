@@ -3,13 +3,16 @@ import NumberInput from "./NumberInput.jsx";
 
 const PaceNumberInput = ({ value, setValues, disabled }) => {
   const onHoursChange = (e) => {
-    setValues("paceHours", +e.target.value);
+    const pace = +e.target.value * 60 + minutes + seconds;
+    setValues("pace", pace);
   };
   const onMinutesChange = (e) => {
-    setValues("paceMinutes", +e.target.value);
+    const pace = hours + +e.target.value + seconds;
+    setValues("pace", pace);
   };
   const onSecondsChange = (e) => {
-    setValues("paceSeconds", +e.target.value);
+    const pace = hours + minutes + +e.target.value / 60;
+    setValues("pace", pace);
   };
 
   const hours = Math.floor(value / 60);

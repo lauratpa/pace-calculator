@@ -8,16 +8,8 @@ const DistanceCalculator = ({ fields, setFields }) => {
   const displayDistance = `${distance.toLocaleString()}`;
 
   useEffect(() => {
-    const pace =
-      fields.paceHours * 60 + fields.paceMinutes + fields.paceSeconds / 60;
-
-    const duration =
-      fields.durationHours * 60 +
-      fields.durationMinutes +
-      fields.durationSeconds / 60;
-
-    if (duration > 0 && pace > 0) {
-      setDistance((duration / pace) * 1000);
+    if (fields.duration > 0 && fields.pace > 0) {
+      setDistance((fields.duration / fields.pace) * 1000);
     }
   }, [fields, setFields]);
 
@@ -29,15 +21,11 @@ const DistanceCalculator = ({ fields, setFields }) => {
         disabled={true}
       />
       <DurationInput
-        value={fields.durationMinutes}
+        value={fields.duration}
         setValues={setFields}
         disabled={false}
       />
-      <PaceInput
-        value={fields.paceMinutes}
-        setValues={setFields}
-        disabled={false}
-      />
+      <PaceInput value={fields.pace} setValues={setFields} disabled={false} />
     </div>
   );
 };

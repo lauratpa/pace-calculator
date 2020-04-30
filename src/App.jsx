@@ -8,12 +8,8 @@ import useFormFields from "./useFormFields.jsx";
 const App = () => {
   const [fields, setFields] = useFormFields({
     distance: "0",
-    durationHours: "0",
-    durationMinutes: "0",
-    durationSeconds: "0",
-    paceHours: "0",
-    paceMinutes: "0",
-    paceSeconds: "0",
+    duration: "0",
+    pace: "0",
   });
 
   const [targetVariable, setTargetVariable] = useState("distance");
@@ -32,7 +28,6 @@ const App = () => {
 
   return (
     <div id="calculator">
-      <div>{JSON.stringify(fields)}</div>
       <label>
         <select
           onChange={(e) => setTargetVariable(e.target.value.toLowerCase())}

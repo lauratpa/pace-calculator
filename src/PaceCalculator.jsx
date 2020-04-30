@@ -7,13 +7,8 @@ const PaceCalculator = ({ fields, setFields }) => {
   const [pace, setPace] = useState("0");
 
   useEffect(() => {
-    const duration =
-      fields.durationHours * 60 +
-      fields.durationMinutes +
-      fields.durationSeconds / 60;
-
-    if (duration > 0 && fields.distance > 0) {
-      setPace(duration / (fields.distance / 1000));
+    if (fields.duration > 0 && fields.distance > 0) {
+      setPace(fields.duration / (fields.distance / 1000));
     }
   }, [fields, setFields]);
 
@@ -25,7 +20,7 @@ const PaceCalculator = ({ fields, setFields }) => {
         disabled={false}
       />
       <DurationInput
-        value={fields.durationMinutes}
+        value={fields.duration}
         setValues={setFields}
         disabled={false}
       />
