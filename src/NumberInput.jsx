@@ -6,8 +6,8 @@ const NumberInput = ({ label, value, onChange, disabled }) => {
     <label>
       {label}:
       <DebounceInput
-        type="text"
-        value={value}
+        type="number"
+        value={Math.round(value)}
         disabled={disabled}
         debounceTimeout={300}
         onChange={(e) => {

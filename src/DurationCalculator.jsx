@@ -4,13 +4,13 @@ import DurationInput from "./DurationInput.jsx";
 import PaceInput from "./PaceInput.jsx";
 
 const DurationCalculator = ({ fields, setFields }) => {
-  const [duration, setDuration] = useState("0");
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     if (fields.distance > 0 && fields.pace > 0) {
       setDuration((fields.distance / 1000) * fields.pace);
     }
-  }, [fields, setFields]);
+  }, [setDuration, fields]);
 
   return (
     <div>
